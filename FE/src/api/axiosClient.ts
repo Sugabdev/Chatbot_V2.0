@@ -3,7 +3,7 @@ import { refreshToken } from '@/services/auth'
 import type { AxiosInstance, AxiosResponse } from 'axios'
 
 export const authInstance: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:8000/api/',
+    baseURL: import.meta.env.AUTH_API_URL,
     withCredentials: true,
     headers: {
         'Content-type': 'application/json',
@@ -48,7 +48,7 @@ authInstance.interceptors.response.use(
 )
 
 export const chatInstance: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:8000/api/chats/',
+    baseURL: import.meta.env.CHAT_API_URL,
     withCredentials: true,
     headers: {
         'Content-type': 'application/json',
