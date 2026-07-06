@@ -1,0 +1,10 @@
+.env
+.vscode
+
+./BE/.venv
+./BE/.vscode
+./BE/.env
+./BE/script.py
+
+./FE/.vscode
+./FE/.env

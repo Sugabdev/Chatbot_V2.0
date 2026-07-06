@@ -1,0 +1,50 @@
+# ==========================================
+# Control de Entornos y Docker
+# ==========================================
+.git
+.gitignore
+README.md
+docker-compose*
+*.md
+
+# Excluir los archivos .env reales para que no se queden guardados 
+# estáticamente dentro de la imagen de Docker por seguridad
+.env
+.env.production
+.env.local
+
+# ==========================================
+# Backend (Django / Python)
+# ==========================================
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.venv/
+**/venv/
+**/env/
+**/db.sqlite3            # Evita copiar la base de datos de desarrollo local
+
+# ==========================================
+# Frontend (React / Node / Vite)
+# ==========================================
+**/node_modules/
+**/dist/
+**/build/
+**/.cache/
+**/.npm/
+**/.pnpm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# Sistemas Operativos y Editores
+# ==========================================
+.DS_Store
+.vscode/                 # Evita copiar tus VS Code Profiles u configuraciones locales
+.idea/
+*.suo
+*.ntvs*
+*.njsproj

@@ -1,0 +1,27 @@
+[project]
+name = "chatbot"
+version = "0.1.0"
+description = "openrouter chatbot"
+authors = [
+    {name = "Jesus",email = "jesuga27@gmail.com"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=6.0.5,<7.0.0)",
+    "djangorestframework (>=3.17.1,<4.0.0)",
+    "daphne (>=4.2.1,<5.0.0)",
+    "django-cors-headers (>=4.9.0,<5.0.0)",
+    "channels (>=4.3.2,<5.0.0)",
+    "channels-redis (>=4.3.0,<5.0.0)",
+    "python-decouple (>=3.8,<4.0)",
+    "psycopg[binary,pool] (>=3.3.4,<4.0.0)",
+    "djangorestframework-simplejwt (>=5.5.1,<6.0.0)",
+    "dj-database-url (>=3.1.2,<4.0.0)",
+    "openrouter (>=0.9.1,<0.10.0)",
+    "django-rich (>=2.2.0,<3.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
