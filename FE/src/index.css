@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+    /*primary*/
+    --color-dark-primary-0: #f2efff;
+    --color-dark-primary-100: #e1e0ff;
+    --color-dark-primary-200: #c0c1ff;
+    --color-dark-primary-300: #a0a3ff;
+    --color-dark-primary-400: #8083ff;
+    --color-dark-primary-500: #6366f1;
+    --color-dark-primary-600: #494bd6;
+    --color-dark-primary-700: #2f2ebe;
+    --color-dark-primary-800: #1000a9;
+    --color-dark-primary-900: #07006c;
+
+    /*secondary*/
+    --color-dark-secondary-0: #e9f1ff;
+    --color-dark-secondary-100: #d4e4fa;
+    --color-dark-secondary-200: #b9c8de;
+    --color-dark-secondary-300: #9dacc2;
+    --color-dark-secondary-400: #8392a6;
+    --color-dark-secondary-500: #69788c;
+    --color-dark-secondary-600: #516072;
+    --color-dark-secondary-700: #39485a;
+    --color-dark-secondary-800: #233143;
+    --color-dark-secondary-900: #0d1c2d;
+
+    /*tertiary*/
+    --color-dark-tertiary-0: #ffede4;
+    --color-dark-tertiary-100: #ffdcc5;
+    --color-dark-tertiary-200: #ffb783;
+    --color-dark-tertiary-300: #f9913a;
+    --color-dark-tertiary-400: #d97721;
+    --color-dark-tertiary-500: #b95f00;
+    --color-dark-tertiary-600: #944b00;
+    --color-dark-tertiary-700: #703700;
+    --color-dark-tertiary-800: #4f2500;
+    --color-dark-tertiary-900: #301400;
+
+    /*neutral*/
+    --color-dark-neutral-0: #f2effb;
+    --color-dark-neutral-100: #e4e1ed;
+    --color-dark-neutral-200: #c7c5d1;
+    --color-dark-neutral-300: #acaab5;
+    --color-dark-neutral-400: #918f9a;
+    --color-dark-neutral-500: #777680;
+    --color-dark-neutral-600: #5e5d67;
+    --color-dark-neutral-700: #46464f;
+    --color-dark-neutral-800: #303038;
+    --color-dark-neutral-900: #1b1b23;
+}
+
+body {
+    font-family: 'Mulish', sans-serif;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
