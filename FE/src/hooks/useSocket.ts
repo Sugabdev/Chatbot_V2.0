@@ -27,7 +27,6 @@ export function useSocket() {
         }
 
         socket.onmessage = (event) => {
-            console.log(event.data)
             const data = JSON.parse(event.data)
             setLastMessage(data)
         }
