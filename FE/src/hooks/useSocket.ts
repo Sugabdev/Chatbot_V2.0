@@ -12,13 +12,15 @@ type SocketMessage =
           event_type: 'completed'
       }
 
+const WS_URL = import.meta.env.WEBSOCKET_URL
+
 export function useSocket() {
     const socketRef = useRef<WebSocket | null>(null)
 
     const [lastMessage, setLastMessage] = useState<SocketMessage | null>(null)
 
     useEffect(() => {
-        const socket = new WebSocket(`ws://localhost:8000/ws/chats/`)
+        const socket = new WebSocket(WS_URL)
 
         socket.onopen = () => {
             console.log('SOCKET OPEN')
