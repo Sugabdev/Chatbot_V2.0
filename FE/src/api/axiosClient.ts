@@ -2,8 +2,8 @@ import axios from 'axios'
 import { refreshToken } from '@/services/auth'
 import type { AxiosInstance, AxiosResponse } from 'axios'
 
-const AUTH_URL = import.meta.env.AUTH_API_URL
-const CHAT_URL = import.meta.env.CHAT_API_URL
+const AUTH_URL = import.meta.env.VITE_AUTH_API_URL
+const CHAT_URL = import.meta.env.VITE_CHAT_API_URL
 
 export const authInstance: AxiosInstance = axios.create({
     baseURL: AUTH_URL,

@@ -12,7 +12,7 @@ type SocketMessage =
           event_type: 'completed'
       }
 
-const WS_URL = import.meta.env.WEBSOCKET_URL
+const WS_URL = import.meta.env.VITE_WEBSOCKET_URL
 
 export function useSocket() {
     const socketRef = useRef<WebSocket | null>(null)
