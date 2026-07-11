@@ -62,16 +62,16 @@ class LoginView(TokenObtainPairView):
             key="access_token",
             value=access,
             httponly=True,
-            samesite="Lax",
-            secure=False,
+            samesite="None",
+            secure=True,
         )
 
         response.set_cookie(
             key="refresh_token",
             value=refresh,
             httponly=True,
-            samesite="Lax",
-            secure=False,
+            samesite="None",
+            secure=True,
         )
 
         response.data = {"authenticated": True}
