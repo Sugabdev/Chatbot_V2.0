@@ -183,7 +183,7 @@ export function LoginForm({
                 <p className="text-dark-neutral-400 flex gap-x-2 text-sm">
                     Try for
                     <span
-                        className="text-dark-primary-400 hover:text-dark-primary-300 cursor-pointer font-bold"
+                        className={`cursor-pointer font-bold ${registered ? 'text-dark-tertiary-500 hover:text-dark-tertiary-300' : 'text-dark-primary-400 hover:text-dark-primary-300'}`}
                         onClick={() => navigate('/')}
                     >
                         FREE

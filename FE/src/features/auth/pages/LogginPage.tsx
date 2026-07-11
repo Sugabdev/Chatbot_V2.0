@@ -28,6 +28,15 @@ export function LogginPage() {
     // Sign Up handler.
     const handleSignUp = async (body: UserBody) => {
         await createUser(body)
+
+        const res = await logInUser(body)
+
+        const user = await authMe()
+
+        if (res.authenticated) {
+            login(user)
+            navigate('/chat')
+        }
     }
 
     // Toggle Sign In/Up form.
