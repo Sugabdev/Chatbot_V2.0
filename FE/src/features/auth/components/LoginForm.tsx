@@ -1,16 +1,19 @@
-import type { UserBody } from '@/types/auth'
-import { Bot, Eye } from 'lucide-react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { Loading } from '@/ui/Loading'
+import { Bot, Eye } from 'lucide-react'
+import type { UserBody } from '@/types/auth'
 
 export function LoginForm({
     onSubmit,
     toggleForm,
     registered,
+    loading,
 }: {
     onSubmit: (body: UserBody) => void
     toggleForm: () => void
     registered: boolean
+    loading: boolean
 }) {
     const [formData, setFormData] = useState({
         username: '',
@@ -157,12 +160,16 @@ export function LoginForm({
                 </label>
             )}
 
-            <button
-                type="submit"
-                className={`${registered ? 'bg-dark-tertiary-500 active:bg-dark-tertiary-700 hover:bg-dark-tertiary-400' : 'bg-dark-primary-500 active:bg-dark-primary-700 hover:bg-dark-primary-400'} w-full cursor-pointer rounded-lg py-2 font-semibold`}
-            >
-                {registered ? 'Create Account' : 'Sign In'}
-            </button>
+            {loading ? (
+                <Loading />
+            ) : (
+                <button
+                    type="submit"
+                    className={`${registered ? 'bg-dark-tertiary-500 active:bg-dark-tertiary-700 hover:bg-dark-tertiary-400' : 'bg-dark-primary-500 active:bg-dark-primary-700 hover:bg-dark-primary-400'} w-full cursor-pointer rounded-lg py-2 font-semibold`}
+                >
+                    {registered ? 'Create Account' : 'Sign In'}
+                </button>
+            )}
 
             <div className="text-dark-neutral-400 flex gap-x-2 text-sm">
                 <span>

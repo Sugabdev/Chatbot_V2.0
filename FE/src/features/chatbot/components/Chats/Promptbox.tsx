@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SendHorizontal } from 'lucide-react'
-import { Spinner } from '@/features/chatbot/components/Spinner'
+import { Spinner } from '@/ui/Spinner'
 
 export function Promptbox({
     isGenerating,

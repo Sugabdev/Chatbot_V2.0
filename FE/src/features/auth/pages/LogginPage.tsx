@@ -8,6 +8,7 @@ import type { UserBody } from '@/types/auth'
 
 export function LogginPage() {
     const [registered, setRegistered] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const navigate = useNavigate()
 
@@ -15,6 +16,7 @@ export function LogginPage() {
 
     // Sign In handler.
     const handleSignIn = async (body: UserBody) => {
+        setLoading(true)
         const res = await logInUser(body)
 
         const user = await authMe()
@@ -22,11 +24,13 @@ export function LogginPage() {
         if (res.authenticated) {
             login(user)
             navigate('/chat')
+            setLoading(false)
         }
     }
 
     // Sign Up handler.
     const handleSignUp = async (body: UserBody) => {
+        setLoading(true)
         await createUser(body)
 
         const res = await logInUser(body)
@@ -36,6 +40,7 @@ export function LogginPage() {
         if (res.authenticated) {
             login(user)
             navigate('/chat')
+            setLoading(false)
         }
     }
 
@@ -51,12 +56,14 @@ export function LogginPage() {
                     onSubmit={handleSignUp}
                     toggleForm={toggleForm}
                     registered={registered}
+                    loading={loading}
                 />
             ) : (
                 <LoginForm
                     onSubmit={handleSignIn}
                     toggleForm={toggleForm}
                     registered={registered}
+                    loading={loading}
                 />
             )}
         </main>
