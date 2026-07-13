@@ -5,6 +5,9 @@ type SocketMessage =
           chunk: string
       }
     | {
+          full_message: string
+      }
+    | {
           event_type: 'chat_created'
           chat_id: string
       }

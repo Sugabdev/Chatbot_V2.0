@@ -136,10 +136,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # Manage existing chats events on free users.
     async def continue_chat_free(self, user_prompt):
+        full_message = ""
 
         async for chunk in stream_client(user_prompt):
             if chunk:
+                full_message += chunk
                 await self.send(text_data=json.dumps({"chunk": chunk}))
+
+        await self.send(
+            text_data=json.dumps({
+                "full_message": full_message,
+            })
+        )
 
         await self.send(
             text_data=json.dumps({

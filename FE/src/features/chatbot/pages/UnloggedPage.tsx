@@ -76,6 +76,19 @@ export function UnloggedPage() {
             })
         }
 
+        if ('full_message' in lastMessage) {
+            setMessages((prev) => {
+                const copy = [...prev]
+                const last = copy[copy.length - 1]
+
+                if (!last) return prev
+
+                last.content = lastMessage.full_message
+
+                return copy
+            })
+        }
+
         if (
             'event_type' in lastMessage &&
             lastMessage.event_type === 'completed'
