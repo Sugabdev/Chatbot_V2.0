@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { LoginForm } from '@/features/auth/components/LoginForm'
@@ -9,6 +10,7 @@ import type { UserBody } from '@/types/auth'
 export function LogginPage() {
     const [registered, setRegistered] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
+    const [errors, setErrors] = useState(null)
 
     const navigate = useNavigate()
 
@@ -17,13 +19,24 @@ export function LogginPage() {
     // Sign In handler.
     const handleSignIn = async (body: UserBody) => {
         setLoading(true)
-        const res = await logInUser(body)
+        setErrors(null)
 
-        const user = await authMe()
+        try {
+            const res = await logInUser(body)
 
-        if (res.authenticated) {
-            login(user)
-            navigate('/chat')
+            const user = await authMe()
+
+            if (res.authenticated) {
+                login(user)
+                navigate('/chat')
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const data = error.response?.data
+
+                setErrors(data)
+            }
+        } finally {
             setLoading(false)
         }
     }
@@ -31,21 +44,35 @@ export function LogginPage() {
     // Sign Up handler.
     const handleSignUp = async (body: UserBody) => {
         setLoading(true)
-        await createUser(body)
+        setErrors(null)
 
-        const res = await logInUser(body)
+        try {
+            await createUser(body)
 
-        const user = await authMe()
+            const res = await logInUser(body)
 
-        if (res.authenticated) {
-            login(user)
-            navigate('/chat')
+            const user = await authMe()
+
+            if (res.authenticated) {
+                login(user)
+                navigate('/chat')
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const data = error.response?.data
+
+                console.log('status', error.response?.status)
+
+                setErrors(data)
+            }
+        } finally {
             setLoading(false)
         }
     }
 
     // Toggle Sign In/Up form.
     const toggleForm = () => {
+        setErrors(null)
         setRegistered((prev) => !prev)
     }
 
@@ -57,6 +84,7 @@ export function LogginPage() {
                     toggleForm={toggleForm}
                     registered={registered}
                     loading={loading}
+                    errors={errors}
                 />
             ) : (
                 <LoginForm
@@ -64,6 +92,7 @@ export function LogginPage() {
                     toggleForm={toggleForm}
                     registered={registered}
                     loading={loading}
+                    errors={errors}
                 />
             )}
         </main>

@@ -4,16 +4,24 @@ import { Loading } from '@/ui/Loading'
 import { Bot, Eye } from 'lucide-react'
 import type { UserBody } from '@/types/auth'
 
+interface errors {
+    username?: string
+    email?: string
+    detail?: string
+}
+
 export function LoginForm({
     onSubmit,
     toggleForm,
     registered,
     loading,
+    errors,
 }: {
     onSubmit: (body: UserBody) => void
     toggleForm: () => void
     registered: boolean
     loading: boolean
+    errors: errors | null
 }) {
     const [formData, setFormData] = useState({
         username: '',
@@ -41,10 +49,7 @@ export function LoginForm({
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (!passwordMatch) {
-            alert("Password doesn't match, try again!")
-            return
-        }
+        if (!passwordMatch) return
 
         const body: UserBody = registered
             ? {
@@ -79,6 +84,7 @@ export function LoginForm({
                 </small>
             </header>
 
+            {errors && <p className="mb-2 text-red-400">{errors.detail}</p>}
             <label className="text-[10px]">
                 USERNAME
                 <input
@@ -90,6 +96,9 @@ export function LoginForm({
                     placeholder="user"
                     className="bg-dark-neutral-200 text-dark-neutral-900 mt-1 block w-full rounded-lg px-4 py-2 text-sm outline-none"
                 />
+                {errors?.username && (
+                    <p className="mt-2 text-red-400">{errors.username}</p>
+                )}
             </label>
 
             {registered && (
@@ -104,6 +113,9 @@ export function LoginForm({
                         placeholder="user@email.com"
                         className="bg-dark-neutral-200 text-dark-neutral-900 mt-1 block w-full rounded-lg px-4 py-2 text-sm outline-none"
                     />
+                    {errors?.email && (
+                        <p className="mt-2 text-red-400">{errors.email}</p>
+                    )}
                 </label>
             )}
 
@@ -153,9 +165,9 @@ export function LoginForm({
                         />
                     </div>
                     {!passwordMatch && (
-                        <small className="text-red-700">
+                        <p className="mt-2 text-red-700">
                             Password doesn't match!
-                        </small>
+                        </p>
                     )}
                 </label>
             )}
@@ -171,32 +183,44 @@ export function LoginForm({
                 </button>
             )}
 
-            <div className="text-dark-neutral-400 flex gap-x-2 text-sm">
-                <span>
-                    {registered
-                        ? 'Already have an account?'
-                        : "Don't have an account?"}
-                </span>
-
-                <span
-                    className={`${registered ? 'text-dark-tertiary-500 hover:text-dark-tertiary-300' : 'text-dark-primary-400 hover:text-dark-primary-300'} cursor-pointer`}
-                    onClick={toggleForm}
-                >
-                    {registered ? 'Sign In' : 'Sign Up'}
-                </span>
-            </div>
-
-            <div className="mx-auto">
-                <p className="text-dark-neutral-400 flex gap-x-2 text-sm">
-                    Try for
-                    <span
-                        className={`cursor-pointer font-bold ${registered ? 'text-dark-tertiary-500 hover:text-dark-tertiary-300' : 'text-dark-primary-400 hover:text-dark-primary-300'}`}
-                        onClick={() => navigate('/')}
-                    >
-                        FREE
+            {!loading && (
+                <div className="text-dark-neutral-400 flex gap-x-2 text-sm">
+                    <span>
+                        {registered
+                            ? 'Already have an account?'
+                            : "Don't have an account?"}
                     </span>
-                </p>
-            </div>
+
+                    <span
+                        className={`${registered ? 'text-dark-tertiary-500 hover:text-dark-tertiary-300' : 'text-dark-primary-400 hover:text-dark-primary-300'} cursor-pointer`}
+                        onClick={() => {
+                            toggleForm()
+                            setFormData({
+                                username: '',
+                                email: '',
+                                password: '',
+                                confirmPassword: '',
+                            })
+                        }}
+                    >
+                        {registered ? 'Sign In' : 'Sign Up'}
+                    </span>
+                </div>
+            )}
+
+            {!loading && (
+                <div className="mx-auto">
+                    <p className="text-dark-neutral-400 flex gap-x-2 text-sm">
+                        Try for
+                        <span
+                            className={`cursor-pointer font-bold ${registered ? 'text-dark-tertiary-500 hover:text-dark-tertiary-300' : 'text-dark-primary-400 hover:text-dark-primary-300'}`}
+                            onClick={() => navigate('/')}
+                        >
+                            FREE
+                        </span>
+                    </p>
+                </div>
+            )}
         </form>
     )
 }
