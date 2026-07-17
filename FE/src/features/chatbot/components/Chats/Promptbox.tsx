@@ -22,7 +22,7 @@ export function Promptbox({
     return (
         <form
             onSubmit={handleSubmit}
-            className="grid w-full grid-cols-[1fr_50px] rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-2xl"
+            className="grid grid-cols-[1fr_50px] rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-2xl md:w-full"
         >
             <input
                 className="px-8 outline-none"
