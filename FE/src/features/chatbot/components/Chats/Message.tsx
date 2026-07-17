@@ -15,9 +15,9 @@ export function Message({ content, role }: { content: string; role: string }) {
     return (
         <div className="grid grid-cols-3">
             <div
-                className={`prose prose-invert col-span-2 max-w-none rounded-2xl p-4 ${
+                className={`prose prose-invert col-span-2 max-w-none rounded-2xl p-2 md:p-4 ${
                     isUser
-                        ? 'bg-dark-neutral-900 col-start-2 shadow-lg'
+                        ? 'bg-dark-neutral-900 md:text-md col-start-2 text-sm shadow-lg'
                         : 'col-span-3'
                 } `}
             >
